@@ -1,4 +1,4 @@
-# ECS171-Group8
+# ECS171-Group8-models
 
 1. Model list
 ML: SVM, Random Forest, Naive Bayes, Logistic Regression
@@ -18,3 +18,32 @@ please train on a copy of this notebook, then update the result on branch by
 ! git add . or ! git add <filename>
 ! git commit -m ""
 ! git push
+
+
+// tree Feb18 5:27PM
+.
+├── datasets
+│   ├── amazon_user_reviews_3cat.parquet
+│   ├── amazon_user_reviews_features_sentiment.parquet
+│   └── amazon_user_reviews_text_sentiment.parquet
+├── EDA
+│   └── FeatureSelection_AllFeature_correlation_3cat.ipynb
+├── Models
+│   ├── DL
+│   │   ├── __pycache__
+│   │   │   └── LSTM.cpython-313.pyc
+│   │   └── LSTM.py
+│   └── ML
+│       ├── __pycache__
+│       │   └── RandomForest.cpython-313.pyc
+│       └── RandomForest.py
+├── ModelTraining
+│   ├── DL
+│   │   └── LSTM.ipynb
+│   ├── FE_ML
+│   │   └── TFDIF_RF.ipynb
+│   └── Regular_ML
+│       └── RF.ipynb
+├── README.md
+└── Result_ModelEvaluation
+    └── results.csv
