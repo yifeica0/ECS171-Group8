@@ -5,4 +5,4 @@
 
 ## Model Development
 branch <models>
-`git pull models`
+`git checkout models`
