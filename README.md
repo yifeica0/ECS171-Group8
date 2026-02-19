@@ -12,8 +12,14 @@ ML: SVM, Random Forest, Naive Bayes, Logistic Regression<br>
 DL: CNNs, RNNs, LSTM
 
 **2. datasets:**<br>
+200 each sentiment category, 600 in total per product category<br>
 Regualar ML: <datasets/amazon_user_reviews_features_sentiment.parquet><br>
-FE+ML & DL: <datasets/amazon_user_reviews_text_sentiment.parquet>
+FE+ML & DL: <datasets/amazon_user_reviews_text_sentiment.parquet><br>
+\
+extended datasets:<br>
+400 each sentiment category, 1200 in total per product category<br>
+Regualar ML: <datasets/extended_datasets/amazon_user_reviews_features_sentiment_extended.parquet><br>
+FE+ML & DL: <datasets/extended_datasets/amazon_user_reviews_text_sentiment_extended.parquet><br>
 
 **3. Model Development**<br>
 can write a <.py> file under </Models>, or write it directly in a <.ipynb> under </ModelTraining>
