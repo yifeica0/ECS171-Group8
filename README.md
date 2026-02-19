@@ -4,7 +4,7 @@ everytime before editing, `git pull` <br>
 everytime after editing, 
 ```
 git add .
-git commit -m ""
+git commit -m "xx"
 git push
 ```
 **1. Model list**<br>
@@ -28,17 +28,11 @@ can write a <.py> file under </Models>, or write it directly in a <.ipynb> under
 can copy exists file and edit by yourself (DL: LSTM; FE_ML: TFDIF_RF; Regular ML: RF) under </ModelTraining>
 
 **5. Model Evalution**<br>
-Accuracy, Precision, Recall, F1-Score, Confusion Matrix (TP/FP/FN/TN), ?approach graph
+Accuracy, Precision, Recall, F1-Score, Confusion Matrix (TP/FP/FN/TN), ROC curve
 
 **6. DL Training**<br>
 Use Google Colab to train DL<br>
-https://colab.research.google.com/drive/10JfBXe7yFZ9PQePn2sgqSAUkc1vDvBpj?usp=sharing<br>
-please train on a copy of this notebook, then update the result on branch by 
-```
-! git add . or ! git add <filename>
-! git commit -m ""
-! git push
-```
+please upload your DL file on Google Colab, download the result, move it back to the folder, then update the result on branch by git<br>
 \
 \
 // tree Feb18 5:27PM
