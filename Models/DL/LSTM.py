@@ -16,7 +16,7 @@ from tensorflow.keras.preprocessing.text import Tokenizer
 class LSTMClassifier:
     """LSTM Classifier for text classification with pandas DataFrame input"""
     
-    def __init__(self, vocab_size=10000, max_len=10, embedding_dim=128, lstm_dim=128, dense_dim=64, num_classes=3, 
+    def __init__(self, vocab_size=10000, max_len=20, embedding_dim=128, lstm_dim=128, dense_dim=64, num_classes=3, 
                  df=None, text_column=None, label_column=None, test_size=0.33, random_state=42):
         """
         Initialize LSTM Classifier
@@ -235,7 +235,7 @@ class LSTMClassifier:
         plt.tight_layout()
         plt.show()
     
-    def run_pipeline(self, df, text_column, label_column, epochs=10, batch_size=1, 
+    def run_pipeline(self, df, text_column, label_column, epochs=10, batch_size=32, 
                      test_size=0.33, random_state=42, verbose=1, plot=True):
         """
         Run complete ML pipeline: preprocess -> build model -> train -> evaluate
@@ -301,7 +301,7 @@ class LSTMClassifier:
         print(classification_report(y_test_labels, self.y_pred))
         
         # Step 5: Plot results
-        self.plot_results(self)
+        self.plot_results()
         
         print("\n" + "=" * 50)
         print("Pipeline execution completed!")
