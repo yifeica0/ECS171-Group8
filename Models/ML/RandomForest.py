@@ -38,6 +38,7 @@ class RandomForestPipeline:
         self.model = RandomForestClassifier(n_estimators=n_estimators, random_state=random_state)
         
         # Data splits
+        self.X_scaled_pca = None
         self.X_train = None
         self.X_test = None
         self.y_train = None
@@ -63,17 +64,23 @@ class RandomForestPipeline:
         
         # Standardization
         X_scaled = self.scaler.fit_transform(X)
+        print("Dataset is standardized")
         
         # PCA
         self.pca = PCA(n_components="mle")
-        X_scaled_pca = self.pca.fit_transform(X_scaled)
-        
+        self.X_scaled_pca = self.pca.fit_transform(X_scaled)
+        print("Dataset is processed by PCA")
+       
+    def train_test_split(self, X,y):
         # Train-test split
-        self.X_train, self.X_test, self.y_train, self.y_test = train_test_split(
-            X_scaled_pca, y, test_size=self.test_size, random_state=self.random_state)
-        
-        print(f"Training set size: {len(self.X_train)}")
-        print(f"Test set size: {len(self.X_test)}")
+        if self.X_scaled_pca:
+            self.X_train, self.X_test, self.y_train, self.y_test = train_test_split(
+                self.X_scaled_pca, y, test_size=self.test_size, random_state=self.random_state)
+        else:
+            self.X_train, self.X_test, self.y_train, self.y_test = train_test_split(
+                X, y, test_size=self.test_size, random_state=self.random_state)
+        #print(f"Training set size: {len(self.X_train)}")
+        #print(f"Test set size: {len(self.X_test)}")
     
     def train(self):
         """Train the Random Forest model"""
@@ -117,7 +124,7 @@ class RandomForestPipeline:
         plt.tight_layout()
         plt.show()
     
-    def run_pipeline(self, X, y):
+    def run_pipeline_regular(self, X, y):
         """
         Run the complete pipeline
         
@@ -126,6 +133,22 @@ class RandomForestPipeline:
             y: target data
         """
         self.preprocess(X, y)
+        self.train_test_split(X,y)
+        self.train()
+        self.predict()
+        self.evaluate()
+        self.print_results()
+        self.plot_confusion_matrix()
+    
+    def run_pipeline(self, X, y):
+        """
+        Run the complete pipeline without PCA
+        
+        Args:
+            X: feature data
+            y: target data
+        """
+        self.train_test_split(X,y)
         self.train()
         self.predict()
         self.evaluate()
