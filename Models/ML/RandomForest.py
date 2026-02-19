@@ -34,11 +34,10 @@ class RandomForestPipeline:
         
         # Initialize components
         self.scaler = StandardScaler()
-        self.pca = None
+        self.pca = PCA(n_components="mle")
         self.model = RandomForestClassifier(n_estimators=n_estimators, random_state=random_state)
         
         # Data splits
-        self.X_scaled_pca = None
         self.X_train = None
         self.X_test = None
         self.y_train = None
@@ -52,7 +51,7 @@ class RandomForestPipeline:
         self.f1 = None
         self.cm = None
     
-    def preprocess(self, X, y):
+    def preprocess(self, X, y, standardization=False):
         """
         Preprocess data: scaling and PCA
         
@@ -60,27 +59,20 @@ class RandomForestPipeline:
             X: feature data
             y: target data
         """
-        print(f"Original Class Distribution: {Counter(y)}")
+
+        self.X_train, self.X_test, self.y_train, self.y_test = train_test_split(
+            X, y, test_size=self.test_size, random_state=self.random_state
+        )
         
-        # Standardization
-        X_scaled = self.scaler.fit_transform(X)
-        print("Dataset is standardized")
+        if standardization:
+            self.X_train = self.scaler.fit_transform(self.X_train)
+            self.X_test = self.scaler.transform(self.X_test) 
+            print("Dataset is standardized.")
         
         # PCA
-        self.pca = PCA(n_components="mle")
-        self.X_scaled_pca = self.pca.fit_transform(X_scaled)
-        print("Dataset is processed by PCA")
-       
-    def train_test_split(self, X,y):
-        # Train-test split
-        if self.X_scaled_pca:
-            self.X_train, self.X_test, self.y_train, self.y_test = train_test_split(
-                self.X_scaled_pca, y, test_size=self.test_size, random_state=self.random_state)
-        else:
-            self.X_train, self.X_test, self.y_train, self.y_test = train_test_split(
-                X, y, test_size=self.test_size, random_state=self.random_state)
-        #print(f"Training set size: {len(self.X_train)}")
-        #print(f"Test set size: {len(self.X_test)}")
+        self.X_train = self.pca.fit_transform(self.X_train)
+        self.X_test = self.pca.transform(self.X_test)
+        print(f"PCA complete. Components: {self.pca.n_components_}")
     
     def train(self):
         """Train the Random Forest model"""
@@ -124,7 +116,7 @@ class RandomForestPipeline:
         plt.tight_layout()
         plt.show()
     
-    def run_pipeline_regular(self, X, y):
+    def run_pipeline(self, X, y, standardization = False):
         """
         Run the complete pipeline
         
@@ -132,23 +124,7 @@ class RandomForestPipeline:
             X: feature data
             y: target data
         """
-        self.preprocess(X, y)
-        self.train_test_split(X,y)
-        self.train()
-        self.predict()
-        self.evaluate()
-        self.print_results()
-        self.plot_confusion_matrix()
-    
-    def run_pipeline(self, X, y):
-        """
-        Run the complete pipeline without PCA
-        
-        Args:
-            X: feature data
-            y: target data
-        """
-        self.train_test_split(X,y)
+        self.preprocess(X, y, standardization=standardization)
         self.train()
         self.predict()
         self.evaluate()
