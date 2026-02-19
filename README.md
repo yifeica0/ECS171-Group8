@@ -4,5 +4,5 @@
 - Please have your step explained in detail in the comments
 
 ## Model Development
-branch models
+change to branch "models" \
 `git checkout models`
