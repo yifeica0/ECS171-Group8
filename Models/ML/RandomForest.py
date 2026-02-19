@@ -72,14 +72,14 @@ class RandomForestPipeline:
         )
         
         if standardization:
+            # standardization
             self.X_train = self.scaler.fit_transform(self.X_train)
             self.X_test = self.scaler.transform(self.X_test) 
             print("Dataset is standardized.")
-        
-        # PCA
-        self.X_train = self.pca.fit_transform(self.X_train)
-        self.X_test = self.pca.transform(self.X_test)
-        print(f"PCA complete. Components: {self.pca.n_components_}")
+            # PCA
+            self.X_train = self.pca.fit_transform(self.X_train)
+            self.X_test = self.pca.transform(self.X_test)
+            print(f"PCA complete. Components: {self.pca.n_components_}")
     
     def train(self):
         """Train the Random Forest model"""
