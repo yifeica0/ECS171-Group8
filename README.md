@@ -11,7 +11,7 @@ can copy exists file and edit by yourself (DL: LSTM; FE_ML: TFDIF_RF; Regular ML
 4. Model Evalution
 Accuracy, Precision, Recall, F1-Score, Confusion Matrix (TP/FP/FN/TN), ?approach graph
 
-5.Google Colab
+5. Google Colab
 Use Google Colab to train DL
 https://colab.research.google.com/drive/10JfBXe7yFZ9PQePn2sgqSAUkc1vDvBpj?usp=sharing
 please train on a copy of this notebook, then update the result on branch by 
