@@ -31,6 +31,19 @@ can copy exists file and edit by yourself (DL: LSTM; FE_ML: TFDIF_RF; Regular ML
 
 **5. Model Evalution**<br>
 Accuracy, Precision, Recall, F1-Score, Confusion Matrix (TP/FP/FN/TN), ROC curve
+```
+y_score = model.predict_proba(X_test)
+
+import sys
+import os
+sys.path.insert(0, os.path.abspath('../../'))
+
+# ModelEvaluation
+from ModelEvaluation.ModelEvaluation import ModelEvaluation
+# Model Evaluation
+evaluator = ModelEvaluation()
+evaluator.run_pipeline(y_test, y_pred, y_score)
+```
 
 **6. DL Training**<br>
 Use Google Colab to train DL<br>
