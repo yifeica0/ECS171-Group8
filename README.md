@@ -40,7 +40,6 @@ sys.path.insert(0, os.path.abspath('../../'))
 
 # ModelEvaluation
 from ModelEvaluation.ModelEvaluation import ModelEvaluation
-# Model Evaluation
 evaluator = ModelEvaluation()
 evaluator.run_pipeline(y_test, y_pred, y_score)
 ```
