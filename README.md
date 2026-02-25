@@ -13,7 +13,7 @@ DL: CNNs, RNNs, LSTM
 
 **2. datasets:**<br>
 200 each sentiment category, 600 in total per product category<br>
-sentiment category: rating1-2: (sentiment 2), rating3: (sentiment 1), rating4-5: (sentiment 0)
+sentiment category: rating1-2: neg (sentiment 2), rating3: neutral (sentiment 1), rating4-5: pos (sentiment 0)
 \
 Regualar ML: <datasets/amazon_user_reviews_features_sentiment.parquet><br>
 FE+ML & DL: <datasets/amazon_user_reviews_text_sentiment.parquet><br>
