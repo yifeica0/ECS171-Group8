@@ -98,7 +98,6 @@ class RandomForestPipeline:
         self.precision = precision_score(self.y_test, self.y_pred, average='weighted')
         self.recall = recall_score(self.y_test, self.y_pred, average='weighted')
         self.f1 = f1_score(self.y_test, self.y_pred, average='weighted')
-        y_prob = self.model.predict_proba(self.X_test)
         self.cm = confusion_matrix(self.y_test, self.y_pred)
         self.auc = roc_auc_score(self.y_test, self.y_score, multi_class='ovr', average='weighted')
      
@@ -147,6 +146,31 @@ class RandomForestPipeline:
         plt.tight_layout()
         plt.show()
     
+    def scatter(self):
+        """impossible because of over 2 features"""
+        #  rating1-2: neg (sentiment 2), rating3: neutral (sentiment 1), rating4-5: pos (sentiment 0)
+        pos_indices = np.where(self.y_pred == 0)
+        neu_indices = np.where(self.y_pred == 1)
+        neg_indices = np.where(self.y_pred == 2)
+
+        # Create the plot
+        fig, ax = plt.subplots()
+
+        # Plot each class separately to assign labels and colors
+        ax.scatter(self.X_test[pos_indices, 0], self.X_test[pos_indices, 1], c='y', label="positive")
+        ax.scatter(self.X_test[neu_indices, 0], self.X_test[neu_indices, 1], c='g', label="neutral")
+        ax.scatter(self.X_test[neg_indices, 0], self.X_test[neg_indices, 1], c='b', label="negative")
+
+        # Add legend and labels
+        ax.legend()
+        plt.xlabel('Feature 1')
+        plt.ylabel('Feature 2')
+        plt.title('Classification Scatter')
+        plt.legend()
+        
+        plt.tight_layout()
+        plt.show()
+    
     def run_pipeline(self, X, y, standardization = False):
         """
         Run the complete pipeline
@@ -161,4 +185,5 @@ class RandomForestPipeline:
         self.evaluate()
         self.print_results()
         self.plot_graphs()
+        # self.scatter()
 
