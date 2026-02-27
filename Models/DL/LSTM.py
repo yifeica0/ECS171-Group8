@@ -237,21 +237,23 @@ class LSTMClassifier:
      
     def plot_graphs(self):
         plt.figure(figsize=(14, 5))
-        """Plot confusion matrix"""
+        
+        # Plot confusion matrix
         plt.subplot(1, 2, 1)
         sns.heatmap(self.cm, annot=True, fmt='d', cmap='Blues')
         plt.title('Confusion Matrix')
         plt.xlabel('Predicted Label')
         plt.ylabel('True Label')
-        """Plot ROC curve"""
-        plt.subplot(1, 2, 2)
-        classes = np.unique(self.y_test)
-        y_test_bin = label_binarize(self.y_test, classes=classes)
         
-        for i, class_label in enumerate(classes):
-            fpr, tpr, _ = roc_curve(y_test_bin[:, i], self.y_score[:, i])
-            auc_val = roc_auc_score(y_test_bin[:, i], self.y_score[:, i])
-            plt.plot(fpr, tpr, label=f'Class {class_label} (AUC = {auc_val:.2f})')
+        # Plot ROC curve
+        plt.subplot(1, 2, 2)
+        
+        # FIX: y_test is already one-hot encoded, so we can iterate through num_classes directly
+        for i in range(self.num_classes):
+            # Use the i-th column of the already one-hot encoded y_test
+            fpr, tpr, _ = roc_curve(self.y_test[:, i], self.y_score[:, i])
+            auc_val = roc_auc_score(self.y_test[:, i], self.y_score[:, i])
+            plt.plot(fpr, tpr, label=f'Class {i} (AUC = {auc_val:.2f})')
 
         plt.plot([0, 1], [0, 1], 'k--', alpha=0.5)
         plt.xlabel('False Positive Rate')
@@ -261,6 +263,7 @@ class LSTMClassifier:
         
         plt.tight_layout()
         plt.show()
+        
     def run_pipeline(self, df, text_column, label_column, epochs=10, batch_size=32, 
                      test_size=0.33, random_state=42, verbose=1, plot=True):
         """
