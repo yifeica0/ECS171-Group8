@@ -77,7 +77,6 @@ evaluator.run_pipeline(y_test, y_pred, y_score)
 **6. DL Training**<br>
 Use Google Colab to train DL<br>
 please upload your DL file on Google Colab, download the result, move it back to the folder, then update the result on branch by git<br>
-\
 
 ---
 // tree Feb18 5:27PM
@@ -86,9 +85,24 @@ please upload your DL file on Google Colab, download the result, move it back to
 ├── datasets
 │   ├── amazon_user_reviews_3cat.parquet
 │   ├── amazon_user_reviews_features_sentiment.parquet
-│   └── amazon_user_reviews_text_sentiment.parquet
+│   ├── amazon_user_reviews_text_sentiment.parquet
+│   ├── extended_datasets
+│   │   ├── amazon_user_reviews_3cat_extended.parquet
+│   │   ├── amazon_user_reviews_features_sentiment_extended.parquet
+│   │   └── amazon_user_reviews_text_sentiment_extended.parquet
+│   └── with_stop_word
+│       ├── amazon_user_reviews_text_sentiment_with_sw.parquet
+│       ├── amazon_user_reviews_textANDfeature_sentiment_with_sw.parquet
+│       └── extended
+│           ├── amazon_user_reviews_text_sentiment_with_sw_extended.parquet
+│           └── amazon_user_reviews_textANDfeature_sentiment_with_sw_extended.parquet
 ├── EDA
+│   ├── FeatureSelection_AllFeature_correlation_3cat_extended.ipynb
 │   └── FeatureSelection_AllFeature_correlation_3cat.ipynb
+├── ModelEvaluation
+│   ├── __pycache__
+│   │   └── ModelEvaluation.cpython-313.pyc
+│   └── ModelEvaluation.py
 ├── Models
 │   ├── DL
 │   │   ├── __pycache__
@@ -100,12 +114,31 @@ please upload your DL file on Google Colab, download the result, move it back to
 │       └── RandomForest.py
 ├── ModelTraining
 │   ├── DL
-│   │   └── LSTM.ipynb
+│   │   ├── CNN.ipynb
+│   │   ├── LSTM.ipynb
+│   │   ├── RNN_grid_search.ipynb
+│   │   ├── RNN.ipynb
+│   │   └── with_sw
 │   ├── FE_ML
-│   │   └── TFDIF_RF.ipynb
+│   │   ├── text_Bert.ipynb
+│   │   ├── text_logistic_NB_RF.ipynb
+│   │   ├── TFIDF_NB.ipynb
+│   │   ├── TFIDF_RF.ipynb
+│   │   ├── TFIDF_SVM.ipynb
+│   │   ├── TFIDF_XGB.ipynb
+│   │   └── with_sw
+│   │       └── TFIDF_NB copy.ipynb
 │   └── Regular_ML
-│       └── RF.ipynb
+│       ├── Chuyuan_copy.ipynb
+│       ├── Chuyuan.ipynb
+│       ├── NaiveBayes.ipynb
+│       ├── RF.ipynb
+│       ├── SVM.ipynb
+│       ├── with_sw
+│       └── XGBoost.ipynb
 ├── README.md
 └── Result_ModelEvaluation
     └── results.csv
+
+21 directories, 37 files
 ```
