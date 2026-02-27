@@ -9,9 +9,19 @@ git push
 ```
 **1. Model list**<br>
 ML: SVM, Random Forest, Naive Bayes, Logistic Regression<br>
-DL: CNNs, RNNs, LSTM
+DL: CNNs, RNNs, LSTM<br>
+<br>
+to retrain with dataset with stop word<br>
+please copy your model.ipynb into /with_sw folder and run<br>
+<br>
 
 **2. datasets:**<br>
+textual dataset<br>
+with stop_word:<br>
+`../../../datasets/with_stop_word/extended/amazon_user_reviews_text_sentiment_with_sw_extended.parquet`<br>
+with stop_word extended:<br>
+`../../../datasets/with_stop_word/extended/amazon_user_reviews_text_sentiment_with_sw_extended.parquet`<br>
+<br>
 200 each sentiment category, 600 in total per product category<br>
 sentiment category: rating1-2: neg (sentiment 2), rating3: neutral (sentiment 1), rating4-5: pos (sentiment 0)
 \
@@ -37,6 +47,8 @@ y_score = model.predict_proba(X_test)
 import sys
 import os
 sys.path.insert(0, os.path.abspath('../../'))
+# if you are under /with_sw 
+# sys.path.insert(0, os.path.abspath('../../../'))
 
 # ModelEvaluation
 from ModelEvaluation.ModelEvaluation import ModelEvaluation
