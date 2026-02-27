@@ -10,27 +10,41 @@ git push
 **1. Model list**<br>
 ML: SVM, Random Forest, Naive Bayes, Logistic Regression<br>
 DL: CNNs, RNNs, LSTM<br>
-<br>
-to retrain with dataset with stop word<br>
+
+---
+
+**to retrain with dataset with stop word**<br>
 please copy your model.ipynb into /with_sw folder and run<br>
+e.g. `ModelTraining/FE_ML/TFIDF_NB.ipynb` --> `ModelTraining/FE_ML/with_sw/TFIDF_NB copy.ipynb`
 <br>
 
 **2. datasets:**<br>
-textual dataset<br>
-with stop_word:<br>
-`../../../datasets/with_stop_word/extended/amazon_user_reviews_text_sentiment_with_sw_extended.parquet`<br>
+200 each sentiment category, 600 in total per product category<br>
+extended datasets: 400 each sentiment category, 1200 in total per product category<br>
+**sentiment category: rating1-2: neg (sentiment 2), rating3: neutral (sentiment 1), rating4-5: pos (sentiment 0)**
+
+----
+
+textual dataset with stop_word:<br>
+`../../../datasets/with_stop_word/amazon_user_reviews_text_sentiment_with_sw.parquet`<br>
 with stop_word extended:<br>
 `../../../datasets/with_stop_word/extended/amazon_user_reviews_text_sentiment_with_sw_extended.parquet`<br>
-<br>
-200 each sentiment category, 600 in total per product category<br>
-sentiment category: rating1-2: neg (sentiment 2), rating3: neutral (sentiment 1), rating4-5: pos (sentiment 0)
-\
+
+----
+
+feature + textual dataset with stop_word<br>
+`../../../datasets/with_stop_word/amazon_user_reviews_textANDfeature_sentiment_with_sw.parquet`
+`../../../datasets/with_stop_word/extended/amazon_user_reviews_textANDfeature_sentiment_with_sw_extended.parquet`
+
+----
+
 Regualar ML: <datasets/amazon_user_reviews_features_sentiment.parquet><br>
-FE+ML & DL: <datasets/amazon_user_reviews_text_sentiment.parquet><br>
-\
-extended datasets:<br>
-400 each sentiment category, 1200 in total per product category<br>
 Regualar ML: <datasets/extended_datasets/amazon_user_reviews_features_sentiment_extended.parquet><br>
+
+----
+
+textual dataset without stop word:
+FE+ML & DL: <datasets/amazon_user_reviews_text_sentiment.parquet><br>
 FE+ML & DL: <datasets/extended_datasets/amazon_user_reviews_text_sentiment_extended.parquet><br>
 
 **3. Model Development**<br>
