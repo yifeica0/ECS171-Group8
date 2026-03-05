@@ -30,6 +30,19 @@ from nltk.sentiment.vader import SentimentIntensityAnalyzer
 
 # take original text and timestamp
 def FE_dataset_generating_function(text, timestamp):
+    """
+    Generate a feature-rich DataFrame from the original text and timestamp.
+    Inputs: text (str), timestamp (datetime-like)
+    Output: DataFrame with engineered features
+        variables: ["original_text", 
+        "hour", "month", "season", 
+        "exclamation_count", "question_count", 
+        "word_count", "char_count", "all_caps_words", 
+        "uppercase_ratio", "total_punctuation", "avg_word_length", 
+        "NN_count", "JJ_count", "VB_count", "RB_count",
+        "DT_count", "PRP_count", "PUNCT_count", 
+        "neg", "neu", "pos", "compound"]
+    """
     # timestamp conversion
     timestamp = pd.to_datetime(timestamp)
     hour = timestamp.hour
