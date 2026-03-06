@@ -2,7 +2,6 @@ import re
 import string
 import pandas as pd
 import nltk
-
 # Download necessary NLTK data for VADER and POS tagging
 # This might take a moment if not already downloaded
 try:
@@ -17,7 +16,6 @@ try:
     nltk.data.find('taggers/averaged_perceptron_tagger_eng.zip')
 except LookupError:
     nltk.download('averaged_perceptron_tagger_eng')
-
 # Download required NLTK data (run once)
 nltk.download('punkt')
 nltk.download('stopwords')
@@ -27,6 +25,7 @@ from nltk.tokenize import word_tokenize
 from scipy.sparse import hstack
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 
+###########################################################################
 
 # take original text and timestamp
 def FE_dataset_generating_function(text, timestamp):
@@ -105,3 +104,36 @@ def FE_dataset_generating_function(text, timestamp):
         "neg": vs["neg"], "neu": vs["neu"], "pos": vs["pos"], "compound": vs["compound"]
     }])
     return df
+
+###########################################################################
+
+def analyze_text(text):
+    """
+    Anayze the sentiment of each word in the given text using VADER lexicon.
+        - If the score is greater than 0, the word is considered positive.
+        - If the score is less than 0, the word is considered negative.
+        - If the score is equal to 0, the word is considered neutral.
+    Only return the data
+    
+    """
+    sia = SentimentIntensityAnalyzer()
+    words = re.findall(r"\b\w+\b", text)
+    result = []
+
+    for w in words:
+        score = sia.lexicon.get(w.lower(), 0)
+
+        if score > 0:
+            sentiment = "positive"
+        elif score < 0:
+            sentiment = "negative"
+        else:
+            sentiment = "neutral"
+
+        result.append({
+            "word": w,
+            "sentiment": sentiment,
+            "score": score
+        })
+
+    return result
