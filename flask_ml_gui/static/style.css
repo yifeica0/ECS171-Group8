@@ -1,0 +1,13 @@
+.positive{
+    background-color: #b9f6ca;
+    font-weight: 600;
+}
+
+.negative{
+    background-color: #ffb3b3;
+    font-weight: 600;
+}
+
+.neutral{
+    color: black;
+}

@@ -4,6 +4,7 @@ import numpy as np
 import json
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 from tensorflow.keras.preprocessing.text import tokenizer_from_json
+from FE_generating_function import analyze_words
 
 app = Flask(__name__)
 
@@ -42,7 +43,13 @@ def predict():
 
     sentiment = reverse_map[int(pred_class)]
 
-    return render_template("result.html", prediction=sentiment)
+    # analyze text for hilighting with sentiments
+    words = analyze_words(text)
+
+    return render_template(
+        "result.html", 
+        prediction=sentiment, 
+        words=words)
 
 
 if __name__ == "__main__":
