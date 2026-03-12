@@ -16,7 +16,7 @@ from tensorflow.keras.preprocessing.text import Tokenizer
 class LSTMClassifier:
     """LSTM Classifier for text classification with pandas DataFrame input"""
     
-    def __init__(self, vocab_size=10000, max_len=20, embedding_dim=128, lstm_dim=128, dense_dim=64, num_classes=3, 
+    def __init__(self, vocab_size=10000, max_len=20, embedding_dim=128, lstm_dim=128, dense_dim=64, num_classes=3, dropout_rate=0.5,
                  df=None, text_column=None, label_column=None, test_size=0.33, random_state=42):
         """
         Initialize LSTM Classifier
@@ -40,6 +40,7 @@ class LSTMClassifier:
         self.lstm_dim = lstm_dim
         self.dense_dim = dense_dim
         self.num_classes = num_classes
+        self.dropout_rate = dropout_rate
         self.tokenizer = None
         self.model = None
         self.history = None
@@ -112,6 +113,7 @@ class LSTMClassifier:
             Embedding(input_dim=self.vocab_size, output_dim=self.embedding_dim, input_length=self.max_len),
             LSTM(self.lstm_dim),
             Dense(self.dense_dim, activation='relu'),
+            Dropout(self.dropout_rate),
             Dense(self.num_classes, activation='softmax')
         ])
         
@@ -264,7 +266,7 @@ class LSTMClassifier:
         plt.tight_layout()
         plt.show()
         
-    def run_pipeline(self, df, text_column, label_column, epochs=10, batch_size=32, 
+    def run_pipeline(self, df, text_column, label_column, epochs=10, batch_size=32, dropout_rate = 0.5,
                      test_size=0.33, random_state=42, verbose=1, plot=True):
         """
         Run complete ML pipeline: preprocess -> build model -> train -> evaluate
@@ -294,7 +296,9 @@ class LSTMClassifier:
         
         # Step 2: Build model
         print("\n[Step 2] Building LSTM model...")
+        self.dropout_rate = dropout_rate
         self.build_model()
+        
         print("✓ Model built successfully")
         
         # Step 3: Train model
