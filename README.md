@@ -29,3 +29,4 @@ Go into the demo repository and use terminal to run the command below:<br>
 ```shell
 py -3.11 app.py
 ```
+Wait for 5-10 seconds, then it will run in the local. Open the link in the terminal and select a model you want to use. Type the review text you want to predict and press the botton at the bottom, the model will show result of sentiment prediction.
