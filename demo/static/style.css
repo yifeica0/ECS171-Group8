@@ -1,0 +1,29 @@
+#highlighted-text {
+    font-size: 1.15rem;
+    line-height: 2.2;
+}
+
+.word {
+    padding: 6px 10px;
+    margin: 4px 3px;
+    border-radius: 10px;
+    display: inline-block;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    border: 1px solid transparent;
+}
+
+.word:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+}
+
+.word-neutral {
+    background: rgba(108, 117, 125, 0.10);
+    color: #495057;
+    border-color: rgba(108, 117, 125, 0.18);
+}
+
+.word-good,
+.word-bad {
+    font-weight: 600;
+}
