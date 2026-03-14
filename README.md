@@ -25,7 +25,7 @@ Accuracy, Precision, Recall, F1-Score, Confusion Matrix (TP/FP/FN/TN), ROC curve
 **5.Demo Running**<br>
 To run the demo: <br>
 Use python 3.11 version to run it. Before run it, make sure you have installed all the extra packages like TensorFlow.<br>
-Go into the demo repository and use terminal to run the below command:<br>
+Go into the demo repository and use terminal to run the command below:<br>
 ```shell
 py -3.11 app.py
 ```
