@@ -22,8 +22,7 @@ raw tokenized review text
 **4. Model Evalution**<br>
 Accuracy, Precision, Recall, F1-Score, Confusion Matrix (TP/FP/FN/TN), ROC curve<br>
 
-**5.Demo Running**
-
+**5.Demo Running**<br>
 To run the demo: <br>
 Use python 3.11 version to run it. Before run it, make sure you have installed all the extra packages like TensorFlow.<br>
 Go into the demo repository and use terminal to run the below command:<br>
