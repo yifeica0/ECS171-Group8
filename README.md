@@ -15,7 +15,7 @@ DL: review texts<br>
 for ML: <br>
 linearization of review texts: TF-IDF<br>
 engineerization of quantative feaures: Multicollinearity Deletion (95% percentile threshold) + Standardization + PCA<br>
-[!list of quantative features](/images/)
+![list of quantative features](/images/CorrelationBetweenFeatures.png)
 for DL:<br>
 raw tokenized review text
 
